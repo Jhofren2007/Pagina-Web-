@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>¡Únete A Progra!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style id="app-style">
+    body {
+      font-family: 'Nunito', sans-serif;
+      overflow-x: hidden;
+      background-color: #f0f9ff;
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, #059629 0%, #059629 100%);
+    }
+    
+    .penguin {
+      position: fixed; /* Changed to fixed */
+      bottom: 20px;    /* Added */
+      right: 20px;     /* Added */
+      width: 120px;
+      height: 140px;
+      z-index: 100;
+    }
+    
+    .speech-bubble {
+      position: absolute;
+      background: white;
+      border-radius: 1rem;
+      padding: 1rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      max-width: 250px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      transform: translateY(-100%);
+      top: -20px;
+      left: 50%;
+      margin-left: -125px;
+      z-index: 200;
+    }
+    
+    .speech-bubble:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      margin-left: -10px;
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: white transparent;
+    }
+    
+    .show-bubble {
+      opacity: 1;
+    }
+    
+    .card {
+      transition: all 0.3s ease;
+      display: block; /* Ensure the card behaves like a block for the link */
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .hamburger {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .menu {
+        display: none;
+      }
+      .menu.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background-color: white;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        z-index: 50;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+    
+    .modal {
+      transition: opacity 0.3s ease;
+    }
+    
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    .bounce {
+      animation: bounce 2s infinite;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md fixed w-full z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <img src="1.png" alt="Logo" class="h-10" onerror="this.onerror=null;this.src='https://placehold.co/40x40/0ea5e9/ffffff?text=Logo';">
+        <span class="font-bold text-2xl text-blue-600">Programación 2025</span>
+      </div>
+      
+      <div class="hamburger cursor-pointer" id="hamburgerMenu">
+        <i class="fas fa-bars text-blue-600 text-2xl"></i>
+      </div>
+      
+      <ul class="menu flex space-x-6">
+        <li><a href="javascript:void(0)" class="hover:text-blue-600 transition-colors"></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient pt-28 pb-20 text-white">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <h1 class="text-5xl font-bold mb-4">¡Elige Progra!</h1>
+          <p class="text-xl mb-8">Descubre el fascinante mundo del código y abre las puertas a infinitas posibilidades creativas y profesionales.</p>
+          <button id="startLearningBtn" class="bg-white text-blue-600 font-bold py-3 px-6 rounded-full hover:bg-blue-100 transition-colors text-lg shadow-lg">¿Te interesa? ¡Presiona Aquí!</button>
+        </div>
+        <div class="md:w-2/2 flex justify-center">
+          <img src="elige_wa.png" alt="Elige Progra Logo" class="w-1/4 h-auto" onerror="this.onerror=null;this.src='https://placehold.co/400x300/3b82f6/ffffff?text=Code';">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Languages Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Lenguajes de Programación</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <a href="https://www.w3schools.com/python/" target="_blank" class="card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-md">
+          <div class="text-5xl text-blue-600 mb-4"><i class="fab fa-python"></i></div>
+          <h3 class="text-2xl font-bold mb-2">Python</h3>
+          <p class="text-gray-700">Un lenguaje fácil de aprender con sintaxis clara. Ideal para principiantes y muy utilizado en ciencia de datos e IA.</p>
+        </a>
+        
+        <a href="https://www.w3schools.com/js/" target="_blank" class="card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-md">
+          <div class="text-5xl text-yellow-500 mb-4"><i class="fab fa-js"></i></div>
+          <h3 class="text-2xl font-bold mb-2">JavaScript</h3>
+          <p class="text-gray-700">El lenguaje del navegador web. Crea sitios web interactivos y aplicaciones dinámicas para cualquier dispositivo.</p>
+        </a>
+        
+        <a href="https://sqlzoo.net/wiki/SQL_Tutorial" target="_blank" class="card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-md">
+          <div class="text-5xl text-blue-800 mb-4"><i class="fas fa-database"></i></div>
+          <h3 class="text-2xl font-bold mb-2">SQL</h3>
+          <p class="text-gray-700">Maneja y consulta bases de datos. Una habilidad esencial para cualquier desarrollador de aplicaciones.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we learn Section -->
+  <section class="py-16 bg-blue-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">¿Qué aprendemos en Progra?</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="https://es.khanacademy.org/computing/computer-science/algorithms" target="_blank" class="card bg-white p-6 rounded-xl shadow-md">
+          <div class="text-4xl text-yellow-500 mb-4"><i class="fas fa-brain"></i></div>
+          <h3 class="text-xl font-bold mb-2">Lógica y Algoritmos</h3>
+          <p class="text-gray-700">La base de todo. Aprenderás a pensar como programador, resolver problemas y diseñar soluciones paso a paso.</p>
+        </a>
+        
+        <a href="https://www.w3schools.com/html/" target="_blank" class="card bg-white p-6 rounded-xl shadow-md">
+          <div class="text-4xl text-blue-500 mb-4"><i class="fas fa-desktop"></i></div>
+          <h3 class="text-xl font-bold mb-2">Desarrollo Web Frontend</h3>
+          <p class="text-gray-700">Construirás la parte visual de los sitios web con HTML, CSS y JavaScript para crear interfaces interactivas.</p>
+        </a>
+        
+        <a href="https://www.oracle.com/mx/technical-resources/articles/application-development/que-es-backend.html" target="_blank" class="card bg-white p-6 rounded-xl shadow-md">
+          <div class="text-4xl text-green-500 mb-4"><i class="fas fa-server"></i></div>
+          <h3 class="text-xl font-bold mb-2">Desarrollo Web Backend</h3>
+          <p class="text-gray-700">Crearás el "cerebro" de las aplicaciones, manejando datos con SQL y lógica en el servidor.</p>
+        </a>
+        
+        <a href="https://github.com/florinpop17/app-ideas" target="_blank" class="card bg-white p-6 rounded-xl shadow-md">
+          <div class="text-4xl text-purple-500 mb-4"><i class="fas fa-rocket"></i></div>
+          <h3 class="text-xl font-bold mb-2">Proyectos Reales</h3>
+          <p class="text-gray-700">Aplicarás todo lo aprendido para construir tus propias aplicaciones web, desde la idea hasta el lanzamiento.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">¿Por qué aprender a programar?</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="https://www.eduteka.org/articulos/pensamiento-computacional-web-20" target="_blank" class="card bg-blue-50 p-6 rounded-xl shadow-md">
+          <div class="text-4xl text-yellow-500 mb-4"><i class="fas fa-lightbulb"></i></div>
+          <h3 class="text-xl font-bold mb-2">Potencia tu Mente</h3>
+          <p class="text-gray-700">Desarrolla el pensamiento lógico y la resolución de problemas, habilidades que te servirán en todas tus materias.</p>
+        </a>
+        
+        <a href="https://scratch.mit.edu/" target="_blank" class="card bg-blue-50 p-6 rounded-xl shadow-md">
+          <div class="text-4xl text-pink-500 mb-4"><i class="fas fa-paint-brush"></i></div>
+          <h3 class="text-xl font-bold mb-2">Crea lo que Imaginas</h3>
+          <p class="text-gray-700">Desde tu propio videojuego hasta una página web para tu pyme familiar. Si puedes pensarlo, puedes crearlo.</p>
+        </a>
+        
+        <a href="https://www.u-tad.com/blogs/por-que-aprender-a-programar/" target="_blank" class="card bg-blue-50 p-6 rounded-xl shadow-md">
+          <div class="text-4xl text-green-500 mb-4"><i class="fas fa-graduation-cap"></i></div>
+          <h3 class="text-xl font-bold mb-2">Ventaja para la Universidad</h3>
+          <p class="text-gray-700">Saber programar es un plus en cualquier carrera, desde ingeniería y ciencias hasta diseño y humanidades.</p>
+        </a>
+        
+        <a href="https://www.iebschool.com/blog/emprender-siendo-joven-creacion-empresas/" target="_blank" class="card bg-blue-50 p-6 rounded-xl shadow-md">
+          <div class="text-4xl text-red-500 mb-4"><i class="fas fa-store"></i></div>
+          <h3 class="text-xl font-bold mb-2">Emprende tus Ideas</h3>
+          <p class="text-gray-700">Tendrás las herramientas para iniciar tus propios proyectos y transformar tus ideas en negocios reales.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="hero-gradient py-16 text-white text-center">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-6">¿Te decidiste por Progra?</h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">¡Únete a nuestra especialidad y comienza a programar tu futuro!</p>
+      <button id="joinNowBtn" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full hover:bg-blue-100 transition-colors text-lg shadow-lg">¡Únete Ahora!</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="pt-8 border-t border-gray-700 text-center">
+        <p class="text-gray-400">&copy;  Feria TP 2025. Todos Los Derechos Reservados </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Penguin Animation -->
+  <div class="penguin" id="penguin">
+    <img src="image.png" alt="Pingüino Programador" onerror="this.onerror=null;this.src='https://placehold.co/120x140/000000/ffffff?text=Penguin';">
+    <div class="speech-bubble" id="speech-bubble">
+      <p id="speech-text">¿Sabías que Python fue nombrado por el grupo cómico Monty Python?</p>
+    </div>
+  </div>
+
+  <script id="app-script">
+    // Penguin animation
+    const penguin = document.getElementById('penguin');
+    const speechBubble = document.getElementById('speech-bubble');
+    const speechText = document.getElementById('speech-text');
+    
+    // Penguin tips
+    const tips = [
+       "¿Sabías que Python fue nombrado por el grupo cómico Monty Python?",
+      "La programación desarrolla el pensamiento lógico y la capacidad de resolver problemas.",
+      "JavaScript es el lenguaje de programación más utilizado en el desarrollo web.",
+      "Los programadores que trabajan en equipo suelen resolver problemas más rápido.",
+      "Aprender a programar es como aprender un nuevo idioma para hablar con las computadoras.",
+      "¡La primera programadora de la historia fue Ada Lovelace en el siglo XIX!",
+      "Linux, el sistema operativo que impulsa la mayoría de servidores, tiene un pingüino como mascota.",
+      "En programación, podrás aprender múltiples lenguajes que se usan en distintas áreas.",
+      "El primer videojuego de la historia, 'Tennis for Two', fue creado en 1958 con un osciloscopio.",
+      "HTML no es un lenguaje de programación, sino de marcado para estructurar páginas web.",
+      "Casi el 90% de las startups tecnológicas utilizan software de código abierto en sus proyectos.",
+      "El famoso error 'bug' en programación viene de un insecto real encontrado en una computadora en 1947.",
+      "El lenguaje C fue creado en los años 70 y todavía es uno de los más usados.",
+      "Java fue diseñado con el lema 'Write once, run anywhere'.",
+      "El logotipo de JavaScript no tiene relación con Java, son lenguajes diferentes.",
+      "La NASA aún utiliza código escrito en Fortran para algunas simulaciones.",
+      "El lenguaje COBOL aún funciona en sistemas bancarios en todo el mundo.",
+      "El teclado QWERTY fue diseñado para evitar atascos en las antiguas máquinas de escribir.",
+      "El lenguaje de programación Scratch fue creado para enseñar a niños a programar.",
+      "El sistema operativo Android está basado en Linux.",
+      "El navegador Google Chrome está programado principalmente en C++.",
+      "El sistema operativo Windows 1.0 salió en 1985.",
+      "Apple fue fundada en 1976 por Steve Jobs, Steve Wozniak y Ronald Wayne.",
+      "El lenguaje PHP fue creado originalmente para páginas personales (‘Personal Home Page’).",
+      "JavaScript fue creado en solo 10 días por Brendan Eich en 1995.",
+      "Bill Gates escribió su primer programa a los 13 años.",
+      "Los algoritmos están presentes en la vida diaria, no solo en computadoras.",
+      "El lenguaje Swift fue creado por Apple para reemplazar Objective-C.",
+      "Los primeros videojuegos arcade usaban máquinas enormes con componentes físicos.",
+      "Un ‘Hello World’ es la primera prueba en casi todos los lenguajes de programación.",
+      "El lenguaje Ruby fue creado en Japón en 1995.",
+      "El creador de Python, Guido van Rossum, lo lanzó en 1991.",
+      "El software libre permite a cualquiera modificar y distribuir el código.",
+      "El sistema operativo macOS está basado en Unix.",
+      "C# fue creado por Microsoft como alternativa a Java.",
+      "Los primeros discos duros eran tan grandes como un refrigerador.",
+      "El lenguaje Kotlin ahora es el principal para programar apps Android.",
+      "Los programadores a menudo usan el término ‘foo’ y ‘bar’ como ejemplos genéricos.",
+      "El internet como lo conocemos nació en los años 90.",
+      "El término ‘hacker’ originalmente no era negativo, significaba alguien muy hábil en programación.",
+      "Un solo error en el código puede causar pérdidas millonarias en empresas.",
+      "Google empezó como un proyecto universitario en 1996.",
+      "El lenguaje Go fue creado por ingenieros de Google en 2009.",
+      "El símbolo ‘@’ en correos electrónicos se popularizó en 1971.",
+      "El primer emoticón :-) fue usado en 1982.",
+      "Git, la herramienta de control de versiones, fue creada por Linus Torvalds.",
+      "Existen más de 700 lenguajes de programación en el mundo.",
+      "El lenguaje Assembly está más cerca del lenguaje máquina.",
+      "Los emojis son interpretados como caracteres en Unicode.",
+      "El lenguaje R es muy usado en análisis de datos y estadística.",
+      "Muchos satélites todavía funcionan con código antiguo escrito hace décadas.",
+      "Los algoritmos de recomendación son los que deciden qué videos ves en YouTube o TikTok.",
+      "El término 'open source' fue popularizado en los 90.",
+      "El famoso juego Minecraft está programado en Java."
+    ];
+    
+    let currentTip = 0;
+    
+    // Show speech bubble with tip
+    function showTip() {
+      speechText.textContent = tips[currentTip];
+      speechBubble.classList.add('show-bubble');
+      
+      currentTip = (currentTip + 1) % tips.length;
+      
+      setTimeout(() => {
+        speechBubble.classList.remove('show-bubble');
+      }, 5000);
+    }
+    
+    // Start speech bubble animation
+    showTip();
+    setInterval(showTip, 8000);
+    
+    // Button functionality
+    const startLearningBtn = document.getElementById('startLearningBtn');
+    const joinNowBtn = document.getElementById('joinNowBtn');
+    const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScnCbgoP-MyN1OpfnZ5idflDJytpqYjqPhChoApaLfCwUXghQ/viewform?usp=dialog';
+
+    startLearningBtn.addEventListener('click', () => {
+        window.open(googleFormUrl, '_blank');
+    });
+
+    joinNowBtn.addEventListener('click', () => {
+        window.open(googleFormUrl, '_blank');
+    });
+    
+    // Mobile menu
+    const hamburger = document.getElementById('hamburgerMenu');
+    const menu = document.querySelector('.menu');
+    
+    hamburger.addEventListener('click', function() {
+      menu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking elsewhere
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('#hamburgerMenu') && !event.target.closest('.menu') && menu.classList.contains('active')) {
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
